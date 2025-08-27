@@ -1,4 +1,4 @@
-import { type GameContext } from '@ai-werewolf/types';
+import { type GameContext } from '../types';
 import type { PlayerServer } from '../PlayerServer';
 
 // Personality functions

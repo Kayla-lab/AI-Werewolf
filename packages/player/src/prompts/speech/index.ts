@@ -1,5 +1,5 @@
-import type { PlayerContext, SeerContext, WitchContext, GameContext } from '@ai-werewolf/types';
-import { Role } from '@ai-werewolf/types';
+import type { PlayerContext, SeerContext, WitchContext, GameContext } from './types';
+import { Role } from './types';
 import { formatPlayerList, formatSpeechHistory } from '../utils';
 import type { PlayerServer } from '../../PlayerServer';
 

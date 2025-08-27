@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "name": "ai-werewolf-player",
+  "functions": {
+    "api/*.ts": {
+      "runtime": "@vercel/node@18.x",
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/player/(.*)",
+      "destination": "/api/index"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    }
+  }
+}

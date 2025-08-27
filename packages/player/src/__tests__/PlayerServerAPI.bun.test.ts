@@ -11,10 +11,10 @@ import {
   type PlayerContext, 
   type WitchContext, 
   type SeerContext 
-} from '@ai-werewolf/types';
+} from './types';
 
 // Mock the Langfuse imports at the top level
-mock.module('@ai-werewolf/lib', () => ({
+mock.module('../lib', () => ({
   initializeLangfuse: mock(() => {}),
   shutdownLangfuse: mock(() => Promise.resolve()),
   langfuse: {

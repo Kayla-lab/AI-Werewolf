@@ -15,7 +15,7 @@ import {
   SeerNightActionSchema,
   WitchNightActionSchema,
   SpeechResponseSchema
-} from '@ai-werewolf/types';
+} from './types';
 import { WerewolfPrompts } from './prompts';
 import { generateObject } from 'ai';
 import { createOpenAICompatible } from '@ai-sdk/openai-compatible';
