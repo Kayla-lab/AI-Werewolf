@@ -17,15 +17,13 @@ import {
   Langfuse, 
   type LangfuseTraceClient
 } from 'langfuse';
-import { NodeSDK } from '@opentelemetry/sdk-node';
-import { LangfuseExporter } from 'langfuse-vercel';
 import type { PlayerContext, GamePhase } from '../types';
 
 // Langfuse 客户端实例
 let langfuseClient: Langfuse | null = null;
 
-// OpenTelemetry SDK 实例
-let otelSdk: NodeSDK | null = null;
+// OpenTelemetry SDK 实例 (暂时禁用)
+// let otelSdk: NodeSDK | null = null;
 
 // 会话管理
 const sessions = new Map<string, any>(); // gameId -> Session
@@ -59,24 +57,18 @@ function getLangfuseClient(): Langfuse | null {
 export function initializeLangfuse() {
   const client = getLangfuseClient();
   
-  // 初始化 OpenTelemetry SDK with LangfuseExporter
-  if (client && process.env.LANGFUSE_SECRET_KEY && process.env.LANGFUSE_PUBLIC_KEY) {
-    try {
-      otelSdk = new NodeSDK({
-        serviceName: 'ai-werewolf-player',
-        traceExporter: new LangfuseExporter({
-          secretKey: process.env.LANGFUSE_SECRET_KEY,
-          publicKey: process.env.LANGFUSE_PUBLIC_KEY,
-          baseUrl: process.env.LANGFUSE_BASEURL || 'https://cloud.langfuse.com',
-        }),
-      });
-      
-      otelSdk.start();
-      console.log('✅ OpenTelemetry SDK with LangfuseExporter 已初始化');
-    } catch (error) {
-      console.error('❌ OpenTelemetry SDK 初始化失败:', error);
-    }
-  }
+  // OpenTelemetry SDK 暂时禁用，简化部署
+  // if (client && process.env.LANGFUSE_SECRET_KEY && process.env.LANGFUSE_PUBLIC_KEY) {
+  //   try {
+  //     otelSdk = new NodeSDK({
+  //       serviceName: 'ai-werewolf-player',
+  //     });
+  //     otelSdk.start();
+  //     console.log('✅ OpenTelemetry SDK 已初始化');
+  //   } catch (error) {
+  //     console.error('❌ OpenTelemetry SDK 初始化失败:', error);
+  //   }
+  // }
   
   if (client) {
     console.log('📊 Langfuse 已启用，将追踪 AI 请求');
@@ -346,15 +338,15 @@ export function getAITelemetryConfig(
  * 关闭 Langfuse 和 OpenTelemetry
  */
 export async function shutdownLangfuse() {
-  // 关闭 OpenTelemetry SDK
-  if (otelSdk) {
-    try {
-      await otelSdk.shutdown();
-      console.log('✅ OpenTelemetry SDK 已关闭');
-    } catch (error) {
-      console.error('❌ OpenTelemetry SDK 关闭时出错:', error);
-    }
-  }
+  // 关闭 OpenTelemetry SDK (暂时禁用)
+  // if (otelSdk) {
+  //   try {
+  //     await otelSdk.shutdown();
+  //     console.log('✅ OpenTelemetry SDK 已关闭');
+  //   } catch (error) {
+  //     console.error('❌ OpenTelemetry SDK 关闭时出错:', error);
+  //   }
+  // }
   
   const client = getLangfuseClient();
   if (!client) {
