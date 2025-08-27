@@ -1,4 +1,4 @@
-import type { GameEvent, Speech, AllSpeeches } from './types';
+import type { GameEvent, Speech, AllSpeeches } from '../types';
 import { makeAutoObservable } from 'mobx';
 
 export class SpeechSystem {

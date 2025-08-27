@@ -1,4 +1,4 @@
-import type { LastWordsParams } from './types';
+import type { LastWordsParams } from '../../types';
 import { formatPlayerList } from '../utils';
 
 
